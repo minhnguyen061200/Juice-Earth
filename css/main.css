@@ -312,7 +312,7 @@ h2 a {
 
 h2 a:hover {
   color: green;
-  text-decoration: underline solid green;
+  text-decoration: underline green;
 }
 
 .genericContainer img {
