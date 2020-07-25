@@ -36,7 +36,7 @@ const products = [{
   caption: 'Once daily for a healthier and happier life',
   imgUrl: 'images/morning_cleanse.png',
   reviews: 123,
-  linkToProduct: 'morning_cleanse.php'
+  linkToProduct: 'morning_cleanse.html'
 },
   {
     id: 2,
@@ -45,7 +45,7 @@ const products = [{
     caption: 'The delight from five iconic fruits of Juice Earth',
     imgUrl: 'images/penta_delight.png',
     reviews: 163,
-    linkToProduct: 'penta_delight.php'
+    linkToProduct: 'penta_delight.html'
   },
   {
     id: 3,
@@ -54,7 +54,7 @@ const products = [{
     caption: 'A great choice of detoxification with five natural juices',
     imgUrl: 'images/detoxes.png',
     reviews: 145,
-    linkToProduct: 'detoxes.php'
+    linkToProduct: 'detoxes.html'
   },
   {
     id: 4,
@@ -63,7 +63,7 @@ const products = [{
     caption: 'The intense happiness coming from natural ingredients',
     imgUrl: 'images/rainbow_europhia.jpg',
     reviews: 233,
-    linkToProduct: 'rainbow_europhia.php'
+    linkToProduct: 'rainbow_europhia.html'
   },
   {
     id: 5,
@@ -72,7 +72,7 @@ const products = [{
     caption: 'Enhance your immune system with the nutrients of these six juices',
     imgUrl: 'images/immunity_boost.jpg',
     reviews: 170,
-    linkToProduct: 'immunity_boost.php'
+    linkToProduct: 'immunity_boost.html'
   },
   {
     id: 6,
@@ -81,7 +81,7 @@ const products = [{
     caption: 'Enjoy the legendary feeling from three special smoothies',
     imgUrl: 'images/fruity_deluxe.png',
     reviews: 70,
-    linkToProduct: 'fruity_deluxe.php'
+    linkToProduct: 'fruity_deluxe.html'
   },
 ];
 const cookie = ['products', '=', JSON.stringify(products)].join('');
