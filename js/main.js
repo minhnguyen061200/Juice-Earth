@@ -36,7 +36,7 @@ const products = [{
   caption: 'Once daily for a healthier and happier life',
   imgUrl: 'images/morning_cleanse.png',
   reviews: 123,
-  linkToProduct: 'morning_cleanse.php'
+  linkToProduct: 'morning_cleanse.html'
 },
   {
     id: 2,
