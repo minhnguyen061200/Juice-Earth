@@ -1,0 +1,300 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+    <?php
+    session_start();
+
+    if (isset($_SESSION['username'])) {
+    } else {
+        // Redirect them to the login page
+        header("Location: http://titan.csit.rmit.edu.au/~s3581439/ebusiness/login.php");
+    }
+    ?>
+    <meta charset="utf-8">
+    <title>Our Packages</title>
+    <meta name="description" content="Juice Earth - Rmit E Business Systems">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/main.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+    <meta name="theme-color" content="#fafafa">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        .checked {
+            color: gold;
+        }
+    </style>
+    <script>
+        function generateProducts() {
+
+            let productBody = '';
+
+            let productList = read_cookie('products');
+            (productList.sort(() => Math.random() - 0.5)).map((value, index) => {
+                return productBody += `<div class="package-list" style="display:flex; align-items: center; justify-content: space-between">
+                <div>
+                  <a target="_blank" href=${value.linkToProduct}>
+                    <img src=${value.imgUrl}>
+                  </a>
+                </div>
+                <div style="padding-right: 25px;">
+                  <h2 style="text-align: right">${value.name}</h2>
+                  <div class="desc" style="text-align: right">${value.caption}</div>
+                  <div class="price" style="text-align: right; font-weight: bold; padding-bottom: 20px;">AU ${value.price} (Plus Delivery)</div>
+                  <div class="ratingContainer" style="display: flex;align-items: center;justify-content: flex-end;">
+                                      <div class="dropdown">
+                      <button class="dropbtn" ; style="margin-left: 10px; border-radius: 10px">Choose</button>
+                      <div class="dropdown-content">
+                        <a href=${value.linkToProduct}>See More Details</a>
+                        <a onclick=addToCart('${value.id}');>Add To Cart</a>
+                      </div>
+                    </div>
+                    <span class="fa fa-star checked" ; style="margin-left: 20px"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star ${(index % 2 === 0) ? `checked` : ''}"></span> (${value.reviews} reviews)
+                  </div>
+                </div>
+              </div>
+              `;
+            });
+            document.getElementById('productCatalogueContainer').innerHTML = productBody;
+        }
+    </script>
+</head>
+<body onload="generateProducts(); updateCartCount();">
+<script src="js/main.js"></script>
+<!--- Top Navigation Part -->
+<nav>
+    <div style="z-index:100; display: flex; align-items: center;">
+        <a href="index.php">
+            <img src="img/logo-new.png" alt="Juice Earth Logo" style="height:80px; padding: 5px;">
+        </a>
+    </div>
+    <div id="menuItemsContainer">
+        <a href="index.php"><span class="menuItem">HOME</span></a>
+        <a href="product_catalogue.php"><span class="menuItem" style="color: black;">SHOP</span></a>
+        <a href="aboutus.php"><span class="menuItem">ABOUT US</span></a>
+        <a href="contactus.php"><span class="menuItem" id="menuLastElement">CONTACT US</span></a>
+    </div>
+    <div id="cartIconContainer">
+        <a href="cart.php">
+            <span id="cartCounter">0</span>
+            <img src="img/shopping-cart-128.png" alt="Shopping Cart" style="height:45px;">
+        </a>
+    </div>
+</nav>
+<!--- End Top Navigation Part -->
+<style>
+    div.package-list {
+        list-style-type: none;
+        font-family: 'Lato', sans-serif;
+        margin-top: 10px;
+        padding-left: 30px;
+        min-width: 98vw;
+        border-bottom-style: groove;
+        border-width: 5px;
+    }
+
+    .package-list img {
+        max-width: 50vw;
+        height: auto;
+        float: left;
+    }
+
+    .package-list.desc {
+        padding: 100px;
+        text-align: left;
+        font-size: 18px;
+    }
+
+    .package-list.price {
+        margin-top: 10px;
+        font-size: 20px;
+    }
+
+    .package-list h3 {
+        display: inline-block;
+        margin-top: 50px;
+        text-align: center;
+        margin-right: 30px;
+        font-size: 28px;
+        padding: 0;
+    }
+
+    .package-list p {
+        display: inline-block;
+        margin-top: 50px;
+        text-align: center;
+        margin-right: 30px;
+        padding: 0;
+        font-size: 18px;
+    }
+
+    .package-list p.price {
+        display: inline-block;
+        margin-top: 50px;
+        text-align: center;
+        margin-right: 30px;
+        padding: 0;
+        font-size: 22px;
+    }
+
+</style>
+
+<style>
+    .dropbtn {
+        background-color: #4CAF50;
+        margin-bottom: 5px;
+        color: white;
+        padding: 16px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+    }
+
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #9afa8d;
+        width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+    }
+
+    .ratingContainer {
+        /*padding-left: 47vw;*/
+    }
+
+    .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+    .dropdown-content a:hover {
+        background-color: #faf600
+    }
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+    .dropdown:hover .dropbtn {
+        background-color: #3e8e41;
+    }
+</style>
+<style>
+    /* The snackbar - position it at the bottom and in the middle of the screen */
+    #snackbar {
+        visibility: hidden; /* Hidden by default. Visible on click */
+        min-width: 250px; /* Set a default minimum width */
+        margin-left: -125px; /* Divide value of min-width by 2 */
+        background-color: #333; /* Black background color */
+        color: #fff; /* White text color */
+        font-family: 'Lato', sans-serif;
+        text-align: center; /* Centered text */
+        border-radius: 2px; /* Rounded borders */
+        padding: 16px; /* Padding */
+        position: fixed; /* Sit on top of the screen */
+        z-index: 1; /* Add a z-index if needed */
+        left: 50%; /* Center the snackbar */
+        bottom: 30px; /* 30px from the bottom */
+    }
+
+    /* Show the snackbar when clicking on a button (class added with JavaScript) */
+    #snackbar.show {
+        visibility: visible; /* Show the snackbar */
+        /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
+        However, delay the fade out process for 2.5 seconds */
+        -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+        animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    }
+
+    /* Animations to fade the snackbar in and out */
+    @-webkit-keyframes fadein {
+        from {
+            bottom: 0;
+            opacity: 0;
+        }
+        to {
+            bottom: 30px;
+            opacity: 1;
+        }
+    }
+
+    @keyframes fadein {
+        from {
+            bottom: 0;
+            opacity: 0;
+        }
+        to {
+            bottom: 30px;
+            opacity: 1;
+        }
+    }
+
+    @-webkit-keyframes fadeout {
+        from {
+            bottom: 30px;
+            opacity: 1;
+        }
+        to {
+            bottom: 0;
+            opacity: 0;
+        }
+    }
+
+    @keyframes fadeout {
+        from {
+            bottom: 30px;
+            opacity: 1;
+        }
+        to {
+            bottom: 0;
+            opacity: 0;
+        }
+    }
+</style>
+<div id="snackbar">Successfully Added Product to Cart</div>
+<div id="productCatalogueContainer"></div>
+</body>
+<footer>
+    <div id="footerContainer">
+        <div class="footerColumn">
+            <span class="footerTitle" style="font-size: 18px; font-weight: 900">Juice Earth</span>
+            <span class="footerItems" style="font-weight: bold;">We're a team that<br>adore what we do</span>
+        </div>
+        <div class="footerColumn">
+            <span class="footerTitle">Explore</span>
+            <a class="footerItems" href="index.php">Home</a>
+            <a class="footerItems" href="product_catalogue.php">Shop</a>
+            <a class="footerItems" href="aboutus.php">About Us</a>
+            <a class="footerItems" href="contactus.php">Contact Us</a>
+        </div>
+        <div class="footerColumn">
+            <span class="footerTitle">Visit</span>
+            <span class="footerItems">124 La Trobe St,<br>Melbourne<br>VIC 3000</span>
+        </div>
+        <div class="footerColumn">
+            <span class="footerTitle">Follow</span>
+            <a class="footerItems">Instagram</a>
+            <a class="footerItems">Facebook</a>
+            <a class="footerItems">Twitter</a>
+        </div>
+        <div class="footerColumn">
+            <span class="footerTitle">Legal</span>
+            <a class="footerItems">Privacy</a>
+        </div>
+    </div>
+    <div class="genericContainer" id="copyrightFooter">
+        <p>&copy; 2019 Juice-Earth Ltd.</p>
+    </div>
+</footer>
+</html>

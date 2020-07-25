@@ -1,0 +1,335 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+    <?php
+    session_start();
+
+    if (isset($_SESSION['username'])) {
+        // Grab user data from the database using the user_id
+        // Let them access the "logged in only" pages
+    } else {
+        // Redirect them to the login page
+        header("Location: http://titan.csit.rmit.edu.au/~s3581439/ebusiness/login.php");
+    }
+    ?>
+    <meta charset="utf-8">
+    <title>Juice-Earth</title>
+    <meta name="description" content="Juice Earth - Rmit E Business Systems">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/main.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+    <meta name="theme-color" content="#fafafa">
+    <style>
+        .row {
+            display: -ms-flexbox; /* IE10 */
+            display: flex;
+            -ms-flex-wrap: wrap; /* IE10 */
+            flex-wrap: wrap;
+            margin: 0 -16px;
+        }
+
+        .col-25 {
+            -ms-flex: 25%; /* IE10 */
+            flex: 25%;
+        }
+
+        .col-50 {
+            -ms-flex: 50%; /* IE10 */
+            flex: 50%;
+        }
+
+        .col-75 {
+            -ms-flex: 75%; /* IE10 */
+            flex: 75%;
+        }
+
+        .col-25,
+        .col-50,
+        .col-75 {
+            padding: 0 16px;
+            border-radius: 10px;
+        }
+
+        .container {
+            background-color: #EBEBEB;
+            padding: 5px 20px 15px 20px;
+            border: 1px solid lightgrey;
+            border-radius: 6px;
+        }
+
+        .checkout-info {
+            padding-left: 20px;
+        }
+
+        input[type=text] {
+            width: 100%;
+            margin-bottom: 20px;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+
+        label {
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .icon-container {
+            margin-bottom: 20px;
+            padding: 7px 0;
+            font-size: 24px;
+        }
+
+        .btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px;
+            margin: 10px 0;
+            border: none;
+            width: 100%;
+            border-radius: px;
+            cursor: pointer;
+            font-size: 17px;
+        }
+
+        .btn:hover {
+            background-color: #45a049;
+        }
+
+        hr {
+            border: 1px solid lightgrey;
+        }
+
+        span.price {
+            float: right;
+            color: grey;
+        }
+
+        /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other (also change the direction - make the "cart" column go on top) */
+        @media (max-width: 800px) {
+            .row {
+                flex-direction: column-reverse;
+            }
+
+            .col-25 {
+                margin-bottom: 20px;
+            }
+        }
+
+        input[type=text], select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px; /* Rounded borders */
+            margin-top: 6px;
+            margin-bottom: 16px;
+            resize: vertical;
+
+        }
+
+        input[type=submit] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px; /* Rounded borders */
+            text-align: center;
+        }
+
+
+        /* Style the container/contact section */
+        .container {
+            border-radius: 10px;
+            padding: 10px;
+        }
+
+        /* Create two columns so that it  float next to eachother, bring your name... up to the right */
+        .column {
+            float: left;
+            width: 49vw;
+            margin-top: 10px;
+            padding: 60px;
+            font-family: 'Lato', sans-serif;
+
+        }
+
+        /* Clear floats after the columns */
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        .message {
+            padding-top: 10px
+        }
+
+        input[type=tel] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid rgb(204, 204, 204);
+            border-radius: 4px; /* Rounded borders */
+            margin-top: 6px;
+            margin-bottom: 16px;
+            resize: vertical;
+        }
+
+        input[type=email] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            margin-top: 5px;
+            margin-bottom: 16px;
+            margin-left: 0%;
+            resize: vertical;
+        }
+
+        #contactUsContainer {
+            background: #DDEDE7;
+            border: 1px solid #499086;
+            border-radius: 15px;
+            margin-left: 15px;
+
+        }
+
+    </style>
+</head>
+<body onload="updateCartCount();">
+<script src="js/main.js"></script>
+<!--- Top Navigation Part -->
+<nav>
+    <div style="z-index:100; display: flex; align-items: center;">
+        <a href="index.php">
+            <img src="img/logo-new.png" alt="Juice Earth Logo" style="height:80px; padding: 5px;">
+        </a>
+    </div>
+    <div id="menuItemsContainer">
+        <a href="index.php"><span class="menuItem">HOME</span></a>
+        <a href="product_catalogue.php"><span class="menuItem">SHOP</span></a>
+        <a href="aboutus.php"><span class="menuItem">ABOUT US</span></a>
+        <a href="contactus.php"><span class="menuItem" id="menuLastElement" style="color: black;">CONTACT US</span></a>
+    </div>
+    <div id="cartIconContainer">
+        <a href="cart.php">
+            <span id="cartCounter">0</span>
+            <img src="img/shopping-cart-128.png" alt="Shopping Cart" style="height:45px;">
+        </a>
+    </div>
+</nav>
+<div class="container">
+    <div class="row">
+        <div class="column" id=contactUsContainer>
+
+            <h2 style="text-align:center">Get in Touch with us!</h2>
+            <h4> If you have any questions please do not hesistate to send us a message or give us a call</h4>
+
+            <div><img id="locationlogo" src="img/locationlogo.png" alt="Location Logo"
+                      style="height:80px;padding-left:0px;padding-top:10px;"> 124 La Trobe St, Melbourne VIC 3000
+            </div>
+            <br>
+            <div><img id="phonelogo" src="img/phonelogo.png" alt="Phone Logo"
+                      style="height:80px;padding-left:0px;padding-top:10px;"> +613 89044930
+            </div>
+            <br>
+            <div><img id="maillogo" src="img/mailLogo.png" alt="Mail Logo"
+                      style="height:70px;padding-left:0px;padding-top:10px;"> contactus@juice-earth.com
+            </div>
+
+
+        </div>
+
+        <div class="column">
+            <form method="POST" onsubmit="event.preventDefault();" id="contactForm">
+                <label for="yname"></label>
+                <input type="text" id="yname" name="yourname" placeholder="Your name">
+
+                <div>
+                    <label for="formemail"></label>
+                    <input type="email" id="formemail" name="contact[email]" placeholder="Your email">
+                </div>
+
+                <div class="number">
+                    <label for="contactFormTelephone"></label>
+                    <input type="tel" id="contactFormTelephone" name="contact[phone]" class="styled-input" value=""
+                           placeholder="Your number">
+                </div>
+                <div class="message">
+                    <label for="contactFormMessage"></label>
+                    <textarea required="required" rows="15" cols="40" id="contactFormMessage" name="contact[body]"
+                              class="styled-input" style="height:170px" placeholder="Message"></textarea>
+
+                </div>
+
+                <div class="contact-page-submit-button">
+                    <input class="button styled-submit"
+                           onclick="contactUsForm(document.getElementById('yname').value,
+                           document.getElementById('formemail').value,
+                           document.getElementById('contactFormTelephone').value,
+                           document.getElementById('contactFormMessage').value);"
+                           type="submit" id="contactFormSubmit" value="Send"/>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="mapouter">
+    <div class="gmap_canvas">
+        <iframe id="gmap_canvas"
+                src="https://maps.google.com/maps?q=RMIT%20University&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                frameborder="0"
+                style="min-height: 500px; min-width: 98vw;"
+                scrolling="no" marginheight="0" marginwidth="0">
+        </iframe>
+        <style>.mapouter {
+                position: relative;
+                text-align: center;
+                height: 500px;
+                width: 100vw;
+            }
+
+            .gmap_canvas {
+                overflow: hidden;
+                background: none !important;
+                height: 500px;
+                width: 100vw;
+            }</style>
+    </div>
+
+    <!--- End Top Navigation Part -->
+</body>
+<footer>
+    <div id="footerContainer">
+        <div class="footerColumn">
+            <span class="footerTitle" style="font-size: 18px; font-weight: 900">Juice Earth</span>
+            <span class="footerItems" style="font-weight: bold;">We're a team that<br>adore what we do</span>
+        </div>
+        <div class="footerColumn">
+            <span class="footerTitle">Explore</span>
+            <a class="footerItems" href="index.php">Home</a>
+            <a class="footerItems" href="product_catalogue.php">Shop</a>
+            <a class="footerItems" href="aboutus.php">About Us</a>
+            <a class="footerItems" href="contactus.php">Contact Us</a>
+        </div>
+        <div class="footerColumn">
+            <span class="footerTitle">Visit</span>
+            <span class="footerItems">124 La Trobe St,<br>Melbourne<br>VIC 3000</span>
+        </div>
+        <div class="footerColumn">
+            <span class="footerTitle">Follow</span>
+            <a class="footerItems">Instagram</a>
+            <a class="footerItems">Facebook</a>
+            <a class="footerItems">Twitter</a>
+        </div>
+        <div class="footerColumn">
+            <span class="footerTitle">Legal</span>
+            <a class="footerItems">Privacy</a>
+        </div>
+    </div>
+    <div class="genericContainer" id="copyrightFooter">
+        <p>&copy; 2019 Juice-Earth Ltd.</p>
+    </div>
+</footer>
+</html>
+
+

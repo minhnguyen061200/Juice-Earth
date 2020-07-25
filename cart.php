@@ -1,0 +1,612 @@
+<html lang="en">
+
+<head>
+    <?php
+    session_start();
+
+    if (isset($_SESSION['username'])) {
+        // Grab user data from the database using the user_id
+        // Let them access the "logged in only" pages
+    } else {
+        // Redirect them to the login page
+        header("Location: http://titan.csit.rmit.edu.au/~s3581439/ebusiness/login.php");
+    }
+    ?>
+    <meta charset="utf-8">
+    <title>Juice-Earth | Cart</title>
+    <meta name="description" content="Juice Earth - Rmit E Business Systems">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/main.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+    <meta name="theme-color" content="#fafafa">
+    <style>
+        @charset "utf-8";
+
+
+        html,
+        html a {
+            -webkit-font-smoothing: antialiased;
+            text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
+        }
+
+        body {
+            background-color: #fff;
+            color: #666;
+            font-size: 62.5%;
+            margin: 0 auto;
+        }
+
+        a {
+            border: 0 none;
+            outline: 0;
+            text-decoration: none;
+        }
+
+        strong {
+            font-weight: bold;
+        }
+
+        p {
+            margin: 0.75rem 0 0;
+        }
+
+        h1 {
+            font-size: 0.75rem;
+            font-weight: normal;
+            margin: 0;
+            padding: 0;
+        }
+
+        input,
+        button {
+            border: 0 none;
+            outline: 0 none;
+        }
+
+        button {
+            background-color: #666;
+            color: #fff;
+        }
+
+        button:hover,
+        button:focus {
+            background-color: #555;
+        }
+
+        .basket-module,
+        .basket-labels,
+        .basket-product {
+            width: 100%;
+        }
+
+        input,
+        button,
+        .basket,
+        .basket-module,
+        .basket-labels,
+        .item,
+        .price,
+        .quantity,
+        .subtotal,
+        .basket-product,
+        .product-image,
+        .product-details {
+            float: left;
+        }
+
+        .price:before,
+        .subtotal:before,
+        .subtotal-value:before,
+        .total-value:before,
+        .promo-value:before {
+            content: '$';
+        }
+
+        .hide {
+            display: none;
+        }
+
+        main {
+            clear: both;
+            font-family: 'Lato', sans-serif;
+            font-size: 0.75rem;
+            margin: 0 auto;
+            overflow: hidden;
+            padding: 1rem 0;
+            width: 960px;
+        }
+
+        .basket,
+        aside {
+            padding: 0 1rem;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        .basket {
+            width: 70%;
+        }
+
+        .basket-module {
+            color: #111;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.3125rem;
+        }
+
+        .promo-code-field {
+            border: 1px solid #ccc;
+            padding: 0.5rem;
+            text-transform: uppercase;
+            transition: all 0.2s linear;
+            width: 48%;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+            -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+            -o-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+        }
+
+        .promo-code-field:hover,
+        .promo-code-field:focus {
+            border: 1px solid #999;
+        }
+
+        .promo-code-cta {
+            border-radius: 4px;
+            font-size: 0.625rem;
+            margin-left: 0.625rem;
+            padding: 0.6875rem 1.25rem 0.625rem;
+        }
+
+        .basket-labels {
+            border-top: 1px solid #ccc;
+            border-bottom: 1px solid #ccc;
+            margin-top: 1.625rem;
+        }
+
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            color: #111;
+            display: inline-block;
+            padding: 0.625rem 0;
+        }
+
+        li.price:before,
+        li.subtotal:before {
+            content: '';
+        }
+
+        .item {
+            width: 55%;
+        }
+
+        .price,
+        .quantity,
+        .subtotal {
+            width: 15%;
+        }
+
+        .subtotal {
+            text-align: right;
+        }
+
+        .remove {
+            bottom: 1.125rem;
+            float: right;
+            position: absolute;
+            right: 0;
+            text-align: right;
+            width: 45%;
+        }
+
+        .remove button {
+            cursor: pointer;
+            background-color: transparent;
+            color: #777;
+            float: none;
+            text-decoration: underline;
+            text-transform: uppercase;
+        }
+
+        .remove button:hover {
+            color: red;
+            font-weight: bold;
+        }
+
+        .item-heading {
+            padding-left: 4.375rem;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        .basket-product {
+            border-bottom: 1px solid #ccc;
+            padding: 1rem 0;
+            position: relative;
+        }
+
+        .product-image {
+            width: 35%;
+        }
+
+        .product-details {
+            width: 65%;
+        }
+
+        .product-frame {
+            border: 1px solid #aaa;
+        }
+
+        .product-details {
+            padding: 0 1.5rem;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        .quantity-field {
+            background-color: #ccc;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+            font-size: 0.625rem;
+            padding: 2px;
+            width: 3.75rem;
+        }
+
+        aside {
+            padding-top: 25px;
+            float: right;
+            position: relative;
+            width: 30%;
+        }
+
+        .summary {
+            background-color: #eee;
+            border: 1px solid #aaa;
+            padding: 1rem;
+            position: fixed;
+            width: 250px;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        .summary-total-items {
+            color: #666;
+            font-size: 0.875rem;
+            text-align: center;
+        }
+
+        .summary-subtotal,
+        .summary-total {
+            border-top: 1px solid #ccc;
+            border-bottom: 1px solid #ccc;
+            clear: both;
+            margin: 1rem 0;
+            overflow: hidden;
+            padding: 0.5rem 0;
+        }
+
+        .subtotal-title,
+        .subtotal-value,
+        .total-title,
+        .total-value,
+        .promo-title,
+        .promo-value {
+            color: #111;
+            float: left;
+            width: 50%;
+        }
+
+        .summary-promo {
+            -webkit-transition: all .3s ease;
+            -moz-transition: all .3s ease;
+            -o-transition: all .3s ease;
+            transition: all .3s ease;
+        }
+
+        .promo-title {
+            float: left;
+            width: 70%;
+        }
+
+        .promo-value {
+            color: #8B0000;
+            float: left;
+            text-align: right;
+            width: 30%;
+        }
+
+        .subtotal-value,
+        .total-value {
+            text-align: right;
+        }
+
+        .total-title {
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .summary-checkout {
+            display: block;
+        }
+
+        .checkout-cta {
+            display: block;
+            float: none;
+            font-size: 0.75rem;
+            text-align: center;
+            text-transform: uppercase;
+            padding: 0.625rem 0;
+            width: 100%;
+        }
+
+        .summary-delivery-selection {
+            background-color: #ccc;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+            display: block;
+            font-family: 'Lato', sans-serif;
+            font-size: 11px;
+            height: 38px;
+            width: 100%;
+        }
+
+        @media screen and (max-width: 640px) {
+            aside,
+            .basket,
+            .summary,
+            .item,
+            .remove {
+                width: 100%;
+            }
+
+            .basket-labels {
+                display: none;
+            }
+
+            .basket-module {
+                margin-bottom: 1rem;
+            }
+
+            .item {
+                margin-bottom: 1rem;
+            }
+
+            .product-image {
+                width: 40%;
+            }
+
+            .product-details {
+                width: 60%;
+            }
+
+            .price,
+            .subtotal {
+                width: 33%;
+            }
+
+            .quantity {
+                text-align: center;
+                width: 34%;
+            }
+
+            .quantity-field {
+                float: none;
+            }
+
+            .remove {
+                bottom: 0;
+                text-align: left;
+                margin-top: 0.75rem;
+                position: relative;
+            }
+
+            .remove button {
+                padding: 0;
+            }
+
+            .summary {
+                margin-top: 1.25rem;
+                position: relative;
+            }
+        }
+
+        @media screen and (min-width: 641px) and (max-width: 960px) {
+            aside {
+                padding: 0 1rem 0 0;
+            }
+
+            .summary {
+                width: 28%;
+            }
+        }
+
+        @media screen and (max-width: 960px) {
+            main {
+                width: 100%;
+            }
+
+            .product-details {
+                padding: 0 1rem;
+            }
+        }
+    </style>
+    <style>
+        /* The snackbar - position it at the bottom and in the middle of the screen */
+        #snackbar {
+            visibility: hidden; /* Hidden by default. Visible on click */
+            min-width: 250px; /* Set a default minimum width */
+            margin-left: -125px; /* Divide value of min-width by 2 */
+            background-color: #333; /* Black background color */
+            color: #fff; /* White text color */
+            font-family: 'Lato', sans-serif;
+            text-align: center; /* Centered text */
+            border-radius: 2px; /* Rounded borders */
+            padding: 16px; /* Padding */
+            position: fixed; /* Sit on top of the screen */
+            z-index: 1; /* Add a z-index if needed */
+            left: 50%; /* Center the snackbar */
+            bottom: 30px; /* 30px from the bottom */
+        }
+
+        /* Show the snackbar when clicking on a button (class added with JavaScript) */
+        #snackbar.show {
+            visibility: visible; /* Show the snackbar */
+            /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
+            However, delay the fade out process for 2.5 seconds */
+            -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+            animation: fadein 0.5s, fadeout 0.5s 2.5s;
+        }
+
+        /* Animations to fade the snackbar in and out */
+        @-webkit-keyframes fadein {
+            from {
+                bottom: 0;
+                opacity: 0;
+            }
+            to {
+                bottom: 30px;
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadein {
+            from {
+                bottom: 0;
+                opacity: 0;
+            }
+            to {
+                bottom: 30px;
+                opacity: 1;
+            }
+        }
+
+        @-webkit-keyframes fadeout {
+            from {
+                bottom: 30px;
+                opacity: 1;
+            }
+            to {
+                bottom: 0;
+                opacity: 0;
+            }
+        }
+
+        @keyframes fadeout {
+            from {
+                bottom: 30px;
+                opacity: 1;
+            }
+            to {
+                bottom: 0;
+                opacity: 0;
+            }
+        }
+    </style>
+    <script src="js/main.js"></script>
+</head>
+<nav>
+    <div style="z-index:100; display: flex; align-items: center;">
+        <a href="index.php">
+            <img src="img/logo-new.png" alt="Juice Earth Logo" style="height:80px; padding: 5px;">
+        </a>
+    </div>
+    <div id="menuItemsContainer">
+        <a href="index.php"><span class="menuItem">HOME</span></a>
+        <a href="product_catalogue.php"><span class="menuItem" style="color: black;">SHOP</span></a>
+        <a href="aboutus.php"><span class="menuItem">ABOUT US</span></a>
+        <a href="contactus.php"><span class="menuItem" id="menuLastElement">CONTACT US</span></a>
+    </div>
+    <div id="cartIconContainer">
+        <a href="cart.php">
+            <span id="cartCounter">0</span>
+            <img src="img/shopping-cart-128.png" alt="Shopping Cart" style="height:45px;">
+        </a>
+    </div>
+</nav>
+<body onload="updateCartCount(); generateCartProducts();">
+<main>
+
+    <div id="snackbar">Successfully Removed Product From Cart</div>
+    <div class="basket">
+        <div class="basket-labels">
+            <ul>
+                <li class="item item-heading">Product</li>
+                <li class="price">Price</li>
+                <li class="quantity">Quantity</li>
+                <li class="subtotal">Subtotal</li>
+            </ul>
+        </div>
+        <div id="cartPagePlaceholder"></div>
+    </div>
+
+    <aside>
+        <div class="summary">
+            <div class="summary-total-items"><span class="total-items"></span> Summary</div>
+            <div class="summary-subtotal">
+                <div class="subtotal-title">Subtotal</div>
+                <div class="subtotal-value final-value" id="basket-subtotal">0.0.</div>
+            </div>
+            <div class="summary-delivery">
+                <select name="delivery-collection" class="summary-delivery-selection" id="deliverySelect"
+                        onchange="updateDelivery()">
+                    <option value="0" selected="selected">Select Delivery Method</option>
+                    <option value="100">Express</option>
+                    <option value="0">Click and Collect</option>
+                </select>
+            </div>
+            <div class="summary-total">
+                <div class="total-title">Total</div>
+                <div class="total-value final-value" id="basket-total">0</div>
+            </div>
+            <div class="summary-checkout">
+                <button class="checkout-cta"><a href="check_out.php" style="color: white">Go to Secure Checkout</a>
+                </button>
+            </div>
+        </div>
+    </aside>
+</main>
+<footer style="position: absolute; min-width: 100vw; bottom: 0; margin-top: 70px;">
+    <div id="footerContainer" style="color: black;">
+        <div class="footerColumn">
+            <span class="footerTitle" style="font-size: 18px; font-weight: 900">Juice Earth</span>
+            <span class="footerItems" style="font-weight: bold;">We're a team that<br>adore what we do</span>
+        </div>
+        <div class="footerColumn">
+            <span class="footerTitle">Explore</span>
+            <a class="footerItems" href="index.php">Home</a>
+            <a class="footerItems" href="product_catalogue.php">Shop</a>
+            <a class="footerItems" href="aboutus.php">About Us</a>
+            <a class="footerItems" href="contactus.php">Contact Us</a>
+        </div>
+        <div class="footerColumn">
+            <span class="footerTitle">Visit</span>
+            <span class="footerItems">124 La Trobe St,<br>Melbourne<br>VIC 3000</span>
+        </div>
+        <div class="footerColumn">
+            <span class="footerTitle">Follow</span>
+            <a class="footerItems">Instagram</a>
+            <a class="footerItems">Facebook</a>
+            <a class="footerItems">Twitter</a>
+        </div>
+        <div class="footerColumn">
+            <span class="footerTitle">Additional Features</span>
+            <a class="footerItems">Email Newsletter Subscribe</a><a class="footerItems">Contact Us Feature</a>
+        </div>
+    </div>
+    <div class="genericContainer" id="copyrightFooter">
+        <p>&copy; 2019 Juice-Earth Ltd.</p>
+    </div>
+</footer>
+</body>
+</html>
