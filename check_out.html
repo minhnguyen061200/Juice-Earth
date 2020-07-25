@@ -1,17 +1,6 @@
 <!doctype html>
 <html class="no-js" lang="">
 <head>
-    <?php
-    session_start();
-
-    if (isset($_SESSION['username'])) {
-        // Grab user data from the database using the user_id
-        // Let them access the "logged in only" pages
-    } else {
-        // Redirect them to the login page
-        header("Location: http://titan.csit.rmit.edu.au/~s3581439/ebusiness/login.php");
-    }
-    ?>
     <meta charset="utf-8">
     <title>Juice-Earth</title>
     <meta name="description" content="Juice Earth - Rmit E Business Systems">
@@ -128,18 +117,18 @@
 <body style="font-family: 'Lato', sans-serif">
 <nav>
     <div style="z-index:100; position: relative; display: flex; align-items: center;">
-        <a href="index.php">
+        <a href="index.html">
             <img src="img/logo-new.png" alt="Juice Earth Logo" style="height:80px; padding: 5px;">
         </a>
     </div>
     <div id="menuItemsContainer" style="min-width: fit-content; text-decoration: none; position: absolute">
-        <a href="index.php"><span class="menuItem" style="color: black;">HOME</span></a>
-        <a href="product_catalogue.php"><span class="menuItem">SHOP</span></a>
-        <a href="aboutus.php"><span class="menuItem">ABOUT US</span></a>
-        <a href="contactus.php"><span class="menuItem" id="menuLastElement">CONTACT US</span></a>
+        <a href="index.html"><span class="menuItem" style="color: black;">HOME</span></a>
+        <a href="product_catalogue.html"><span class="menuItem">SHOP</span></a>
+        <a href="aboutus.html"><span class="menuItem">ABOUT US</span></a>
+        <a href="contactus.html"><span class="menuItem" id="menuLastElement">CONTACT US</span></a>
     </div>
     <div id="cartIconContainer">
-        <a href="cart.php">
+        <a href="cart.html">
             <span id="cartCounter">0</span>
             <img src="img/shopping-cart-128.png" alt="Shopping Cart" style="height:45px;">
         </a>
@@ -150,7 +139,7 @@
     <div class="col-75">
 
         <div class="checkout-info">
-            <form action="http://titan.csit.rmit.edu.au/~s3581439/ebusiness/paymentConfirmation.php" method="post">
+            <form action="http://titan.csit.rmit.edu.au/~s3581439/ebusiness/paymentConfirmation.html" method="post">
                 <div class="row">
                     <div class="col-50">
                         <h3>Shipping Address</h3>
@@ -218,10 +207,10 @@
         </div>
         <div class="footerColumn">
             <span class="footerTitle">Explore</span>
-            <a class="footerItems" href="index.php">Home</a>
-            <a class="footerItems" href="product_catalogue.php">Shop</a>
-            <a class="footerItems" href="aboutus.php">About Us</a>
-            <a class="footerItems" href="contactus.php">Contact Us</a>
+            <a class="footerItems" href="index.html">Home</a>
+            <a class="footerItems" href="product_catalogue.html">Shop</a>
+            <a class="footerItems" href="aboutus.html">About Us</a>
+            <a class="footerItems" href="contactus.html">Contact Us</a>
         </div>
         <div class="footerColumn">
             <span class="footerTitle">Visit</span>

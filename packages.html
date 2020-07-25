@@ -1,17 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <?php
-    session_start();
-
-    if (isset($_SESSION['username'])) {
-        // Grab user data from the database using the user_id
-        // Let them access the "logged in only" pages
-    } else {
-        // Redirect them to the login page
-        header("Location: http://titan.csit.rmit.edu.au/~s3581439/ebusiness/login.php");
-    }
-    ?>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
@@ -25,10 +14,10 @@
 <!--- Logo -->
 <div style="z-index:100;">
     <h1>
-        <a href="index.php">
+        <a href="index.html">
             <img src="images/logo.png" alt="Juice Earth Logo" style="height:80px;padding-left:10px;">
         </a>
-        <a href="index.php">
+        <a href="index.html">
             <STYLE>A {
                     text-decoration: none;
                     font-family: sans-serif;
@@ -150,10 +139,10 @@
 
 <div class="package-list">
 
-    <a target="_blank" href="morning_cleanse.php">
+    <a target="_blank" href="morning_cleanse.html">
         <img src="images/morning_cleanse.png" alt="morning_cleanse">
     </a>
-    <h3 style="margin-left: 20px"><a href="morning_cleanse.php">Morning Cleanse</a></h3><br/>
+    <h3 style="margin-left: 20px"><a href="morning_cleanse.html">Morning Cleanse</a></h3><br/>
     <p class="desc" ; style="margin-left: 20px">Once daily for a healthier and happier life</p> <br/>
     <p class="price" style="margin-left: 20px; text-align: center; font-weight: bold">AU $125 (NOT Including Delivery
         Fees)</p><br/><br/>
@@ -173,7 +162,7 @@
     <div class="dropdown">
         <button class="dropbtn" ; style="margin-left: 10px">Choose</button>
         <div class="dropdown-content">
-            <a href="morning_cleanse.php">See More Details</a>
+            <a href="morning_cleanse.html">See More Details</a>
             <a href="#">Add To Cart</a>
         </div>
     </div>
@@ -183,11 +172,11 @@
 
 <div class="package-list">
 
-    <a target="_blank" href="penta_delight.php">
+    <a target="_blank" href="penta_delight.html">
         <img src="images/penta_delight.png" alt="penta_delight">
     </a>
     <h3 style="margin-left: 20px">
-        <a href="penta_delight.php">Penta Delight</a></h3><br/>
+        <a href="penta_delight.html">Penta Delight</a></h3><br/>
     <p class="desc" ; style="margin-left: 20px">The delight from five iconic fruits of JuiceEarth</p> <br/>
     <p class="price" style="margin-left: 20px; text-align: center; font-weight: bold">AU $120 (NOT Including Delivery
         Fees)</p><br/><br/>
@@ -207,7 +196,7 @@
     <div class="dropdown">
         <button class="dropbtn" ; style="margin-left: 10px">Choose</button>
         <div class="dropdown-content">
-            <a href="penta_delight.php">See More Details</a>
+            <a href="penta_delight.html">See More Details</a>
             <a href="#">Add To Cart</a>
         </div>
     </div>
@@ -216,10 +205,10 @@
 
 <div class="package-list">
 
-    <a target="_blank" href="detoxes.php">
+    <a target="_blank" href="detoxes.html">
         <img src="images/detoxes.png" alt="detoxes">
     </a>
-    <h3 style="margin-left: 20px"><a href="detoxes.php">Detoxes</a></h3><br/>
+    <h3 style="margin-left: 20px"><a href="detoxes.html">Detoxes</a></h3><br/>
     <p class="desc" ; style="margin-left: 20px">A great choice of detoxification with five natural juices</p> <br/>
     <p class="price" style="margin-left: 20px; text-align: center; font-weight: bold">AU $130 (NOT Including Delivery
         Fees)</p><br/><br/>
@@ -239,7 +228,7 @@
     <div class="dropdown">
         <button class="dropbtn" ; style="margin-left: 10px">Choose</button>
         <div class="dropdown-content">
-            <a href="detoxes.php">See More Details</a>
+            <a href="detoxes.html">See More Details</a>
             <a href="#">Add To Cart</a>
         </div>
     </div>
@@ -248,10 +237,10 @@
 
 <div class="package-list">
 
-    <a target="_blank" href="rainbow_europhia.php">
+    <a target="_blank" href="rainbow_europhia.html">
         <img src="images/rainbow_europhia.jpg" alt="rainbow_europhia">
     </a>
-    <h3 style="margin-left: 20px"><a href="rainbow_europhia.php">Rainbow Europhia</a></h3><br/>
+    <h3 style="margin-left: 20px"><a href="rainbow_europhia.html">Rainbow Europhia</a></h3><br/>
     <p class="desc" ; style="margin-left: 20px">The intense happiness coming from natural ingredients</p> <br/>
     <p class="price" style="margin-left: 20px; text-align: center; font-weight: bold">AU $135 (NOT Including Delivery
         Fees)</p><br/><br/>
@@ -271,7 +260,7 @@
     <div class="dropdown">
         <button class="dropbtn" ; style="margin-left: 10px">Choose</button>
         <div class="dropdown-content">
-            <a href="rainbow_europhia.php">See More Details</a>
+            <a href="rainbow_europhia.html">See More Details</a>
             <a href="#">Add To Cart</a>
         </div>
     </div>
@@ -280,10 +269,10 @@
 
 <div class="package-list">
 
-    <a target="_blank" href="immunity_boost.php">
+    <a target="_blank" href="immunity_boost.html">
         <img src="images/immunity_boost.jpg" alt="images/immunity_boost" ; style="margin-left: 0px">
     </a>
-    <h3 style="margin-left: 20px"><a href="immunity_boost.php">Immunity Boost</a></h3><br/>
+    <h3 style="margin-left: 20px"><a href="immunity_boost.html">Immunity Boost</a></h3><br/>
     <p class="desc" ; style="margin-left: 20px; font-size: 16px">Enhance your immune system with the nutrients of these
         six juices</p> <br/>
     <p class="price" style="margin-left: 20px; text-align: center; font-weight: bold">AU $130 (NOT Including Delivery
@@ -304,7 +293,7 @@
     <div class="dropdown">
         <button class="dropbtn" ; style="margin-left: 10px">Choose</button>
         <div class="dropdown-content">
-            <a href="immunity_boost.php">See More Details</a>
+            <a href="immunity_boost.html">See More Details</a>
             <a href="#">Add To Cart</a>
         </div>
     </div>
@@ -313,10 +302,10 @@
 
 <div class="package-list">
 
-    <a target="_blank" href="fruity_deluxe.php">
+    <a target="_blank" href="fruity_deluxe.html">
         <img src="images/fruity_deluxe.png" alt="fruity_deluxe">
     </a>
-    <h3 style="margin-left: 20px"><a href="fruity_deluxe.php">Fruity Deluxe</a></h3><br/>
+    <h3 style="margin-left: 20px"><a href="fruity_deluxe.html">Fruity Deluxe</a></h3><br/>
     <p class="desc" ; style="margin-left: 20px">Enjoy the legendary feeling from three special smoothies</p> <br/>
     <p class="price" style="margin-left: 20px; text-align: center; font-weight: bold">AU $115 (NOT Including Delivery
         Fees)</p><br/><br/>
@@ -336,7 +325,7 @@
     <div class="dropdown">
         <button class="dropbtn" ; style="margin-left: 10px">Choose</button>
         <div class="dropdown-content">
-            <a href="fruity_deluxe.php">See More Details</a>
+            <a href="fruity_deluxe.html">See More Details</a>
             <a href="#">Add To Cart</a>
         </div>
     </div>

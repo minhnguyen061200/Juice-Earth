@@ -1,17 +1,6 @@
 <!doctype html>
 <html class="no-js" lang="">
 <head>
-    <?php
-    session_start();
-
-    if (isset($_SESSION['username'])) {
-        // Grab user data from the database using the user_id
-        // Let them access the "logged in only" pages
-    } else {
-        // Redirect them to the login page
-        header("Location: http://titan.csit.rmit.edu.au/~s3581439/ebusiness/login.php");
-    }
-    ?>
     <meta charset="utf-8">
     <title>Juice-Earth</title>
     <meta name="description" content="Juice Earth - Rmit E Business Systems">
@@ -25,18 +14,18 @@
 <!--- Top Navigation Part -->
 <nav>
     <div style="z-index:100; display: flex; align-items: center;">
-        <a href="index.php">
+        <a href="index.html">
             <img src="img/logo-new.png" alt="Juice Earth Logo" style="height:80px; padding: 5px;">
         </a>
     </div>
     <div id="menuItemsContainer">
-        <a href="index.php"><span class="menuItem" style="color: black;">HOME</span></a>
-        <a href="product_catalogue.php"><span class="menuItem">SHOP</span></a>
-        <a href="aboutus.php"><span class="menuItem">ABOUT US</span></a>
-        <a href="contactus.php"><span class="menuItem" id="menuLastElement">CONTACT US</span></a>
+        <a href="index.html"><span class="menuItem" style="color: black;">HOME</span></a>
+        <a href="product_catalogue.html"><span class="menuItem">SHOP</span></a>
+        <a href="aboutus.html"><span class="menuItem">ABOUT US</span></a>
+        <a href="contactus.html"><span class="menuItem" id="menuLastElement">CONTACT US</span></a>
     </div>
     <div id="cartIconContainer">
-        <a href="cart.php">
+        <a href="cart.html">
             <span id="cartCounter">0</span>
             <img src="img/shopping-cart-128.png" alt="Shopping Cart" style="height:45px;">
         </a>
@@ -44,7 +33,7 @@
 </nav>
 <div id="bannerHome">
     <span id="bannerHomeTitle">Jump Start Healthy With Fresh Juice Made To Order!! <button><a
-                    href="product_catalogue.php"
+                    href="product_catalogue.html"
                     style="text-decoration: none; color: white;">Order Now</a></button></span>
 </div>
 </div>
@@ -65,7 +54,7 @@
         <span>
       In August 2019, we discovered the power of juice cleanse and the power it has to transform one’s life. What sets Juice Earth apart from our competitors in the market is that we incorporate asian ingredients such as ginger, beetroot, guava etc in our juices.
     </span>
-        <h3 style="border-bottom: 3px solid black; max-width: fit-content;"><a href="aboutus.php"
+        <h3 style="border-bottom: 3px solid black; max-width: fit-content;"><a href="aboutus.html"
                                                                                style="text-decoration: none; color: black">READ
                 MORE</a></h3>
     </div>
@@ -76,7 +65,7 @@
         <span>
       Subscribe now to our customised juice cleanse programs to gain the maximum benefits of our cold pressed juices. All ingredients of our pressed juices are sourced locally from our Australian farmers. Let Juice Earth accompany you on your healthy journey!
     </span>
-        <h3 style="border-bottom: 3px solid black; max-width: fit-content;"><a href="product_catalogue.php"
+        <h3 style="border-bottom: 3px solid black; max-width: fit-content;"><a href="product_catalogue.html"
                                                                                style="text-decoration: none; color: black">SHOP
                 CLEANSES</a></h3>
     </div>
@@ -176,10 +165,10 @@
         </div>
         <div class="footerColumn">
             <span class="footerTitle">Explore</span>
-            <a class="footerItems" href="index.php">Home</a>
-            <a class="footerItems" href="product_catalogue.php">Shop</a>
-            <a class="footerItems" href="aboutus.php">About Us</a>
-            <a class="footerItems" href="contactus.php">Contact Us</a>
+            <a class="footerItems" href="index.html">Home</a>
+            <a class="footerItems" href="product_catalogue.html">Shop</a>
+            <a class="footerItems" href="aboutus.html">About Us</a>
+            <a class="footerItems" href="contactus.html">Contact Us</a>
         </div>
         <div class="footerColumn">
             <span class="footerTitle">Visit</span>

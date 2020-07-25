@@ -1,21 +1,6 @@
 <!doctype html>
 <html class="no-js" lang="">
-<?php
-// Always start this first
-session_start();
 
-if (!empty($_POST)) {
-    if (isset($_POST['username']) && isset($_POST['password'])) {
-        // Verify user password and set $_SESSION
-        if ($_POST['username'] == 'inte' && $_POST['password'] == '2047') {
-            $_SESSION['username'] = 'success';
-	    header("Location: http://titan.csit.rmit.edu.au/~s3581439/ebusiness/index.php");
-        } else {
-          echo "<h2 style=\"text-align:center; color:red;\">Invalid Login Details</h2>";
-        }
-    }
-}
-?>
 <head>
 
   <meta charset="utf-8">
@@ -31,7 +16,7 @@ if (!empty($_POST)) {
 <!--- Top Navigation Part -->
 <nav>
   <div style="z-index:100; display: flex; align-items: center;">
-    <a href="index.php">
+    <a href="index.html">
       <img src="img/logo-new.png" alt="Juice Earth Logo" style="height:80px; padding: 5px;">
     </a>
   </div>

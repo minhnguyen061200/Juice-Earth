@@ -1,17 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" style="font-family: 'Lato', sans-serif">
 <head>
-<?php
-    session_start();
-
-    if (isset($_SESSION['username'])) {
-        // Grab user data from the database using the user_id
-        // Let them access the "logged in only" pages
-    } else {
-        // Redirect them to the login page
-        header("Location: http://titan.csit.rmit.edu.au/~s3581439/ebusiness/login.php");
-    }
-    ?>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -29,18 +18,18 @@
 <body id="top" onload="updateCartCount()">
 <nav>
     <div style="z-index:100; display: flex; align-items: center;">
-        <a href="index.php">
+        <a href="index.html">
             <img src="img/logo-new.png" alt="Juice Earth Logo" style="height:80px; padding: 5px;">
         </a>
     </div>
     <div id="menuItemsContainer">
-        <a href="index.php"><span class="menuItem">HOME</span></a>
-        <a href="product_catalogue.php"><span class="menuItem">SHOP</span></a>
-        <a href="aboutus.php"><span class="menuItem" style="color: black;">ABOUT US</span></a>
-        <a href="contactus.php"><span class="menuItem" id="menuLastElement">CONTACT US</span></a>
+        <a href="index.html"><span class="menuItem">HOME</span></a>
+        <a href="product_catalogue.html"><span class="menuItem">SHOP</span></a>
+        <a href="aboutus.html"><span class="menuItem" style="color: black;">ABOUT US</span></a>
+        <a href="contactus.html"><span class="menuItem" id="menuLastElement">CONTACT US</span></a>
     </div>
     <div id="cartIconContainer">
-        <a href="cart.php">
+        <a href="cart.html">
             <span id="cartCounter">0</span>
             <img src="img/shopping-cart-128.png" alt="Shopping Cart" style="height:45px;">
         </a>
@@ -218,7 +207,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <a href="product_catalogue.php" class="ignite-btn">Order Now</a>
+                <a href="product_catalogue.html" class="ignite-btn">Order Now</a>
             </div>
         </div>
     </div>
@@ -231,10 +220,10 @@
         </div>
         <div class="footerColumn">
             <span class="footerTitle">Explore</span>
-            <a class="footerItems" href="index.php">Home</a>
-            <a class="footerItems" href="product_catalogue.php">Shop</a>
-            <a class="footerItems" href="aboutus.php">About Us</a>
-            <a class="footerItems" href="contactus.php">Contact Us</a>
+            <a class="footerItems" href="index.html">Home</a>
+            <a class="footerItems" href="product_catalogue.html">Shop</a>
+            <a class="footerItems" href="aboutus.html">About Us</a>
+            <a class="footerItems" href="contactus.html">Contact Us</a>
         </div>
         <div class="footerColumn">
             <span class="footerTitle">Visit</span>
