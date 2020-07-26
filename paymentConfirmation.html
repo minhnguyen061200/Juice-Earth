@@ -27,23 +27,9 @@
 </nav>
 <!--- End Top Navigation Part -->
 <?php
-echo "<div style=\"display: flex;
-    align-items: center;
-    justify-content: center;\">
-  <div style=\"display: flex; align-items: center; flex-direction: column; padding-left: 25px;\">
-    <h2> Your Order Has Been Placed</h2>
-    <img src=\"img/success_404675.png\" style=\"max-height: 250px; padding-bottom: 20px;\">
-  </div>
-  <div style=\"display: flex; min-height: 300px; background: lightgray; margin-right: 15px; margin-left: 10vw; padding: 10px;
-    justify-content: space-evenly;
-    border-radius: 20px;
-    font-family: 'Lato', sans-serif;
-    flex-direction: column;\">
-    <h4 style=\"color: #2b542c;\">Your Order Will Be Shipped To:</h4>
-    <span>Name: {$_POST['firstname']}</span>
-    <span>Address: {$_POST['address']}, {$_POST['city']}, {$_POST['state']}, {$_POST['zip']}</span>
-  </div>
-</div>"; ?>
+
+<h1> Thank you for your order. <br> A confirmation of your order will be sen to your email </h1>
+
 <script>delete_cookie('cart')</script>
 </body>
 <footer>
